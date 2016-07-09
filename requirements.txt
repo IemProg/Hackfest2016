@@ -1,0 +1,2 @@
+NumPy >= 1.6.1
+matplotlib >= 1.5.1
