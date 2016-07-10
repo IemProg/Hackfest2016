@@ -1,5 +1,5 @@
 NumPy >= 1.10
 matplotlib >= 1.5.1
-flask-socketio
+flask-socketio==0.96
 Flask
 eventlet

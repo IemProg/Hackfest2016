@@ -77,14 +77,13 @@ def trainSVM(num):
 
     wordPrev = ""
     os.chdir("TrainDataOurs/")
+    # os.chdir("SLFiles/")
     for file in glob.glob("*.jpg"):
+    # for file in glob.glob("*.jpeg"):
         word = file.split('_')[0]
         if word == 'S': # hardcoded value to exit on
             break
-        elif wordPrev == "":
-            wordPrev = word
-            words.append(word)
-        elif wordPrev != word:
+        elif wordPrev == "" or wordPrev != word:
             print 'Class ' + (word) + ' is being uploaded'
             wordPrev = word
             words.append(word)

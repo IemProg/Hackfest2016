@@ -24,10 +24,11 @@ def getGestureImg(cnt,img,th1,model,word_map):
     imgT=cv2.resize(imgT,(200,200))
     imgTG=cv2.cvtColor(imgT,cv2.COLOR_BGR2GRAY)
     resp=int(st.predict(model,imgTG))
-    # print word_map
-    # print resp
+    print word_map
+    print resp
     label = word_map.get(resp)
-    # print label
+    print label
+    # img=cv2.imread('SLFiles/'+label+'_1.jpeg')
     img=cv2.imread('TrainDataOurs/'+label+'_2.jpg')
     # img=cv2.imread('TrainData/'+unichr(int(resp[0])+64)+'_2.jpg')
     # return img,unichr(int(resp[0])+64)

@@ -6,7 +6,8 @@ import re
 import os
 import speak
 STABILIZATION_QTY=20
-model,word_map=st.trainSVM(17)
+NUM_SAMPLES = 17
+model,word_map=st.trainSVM(NUM_SAMPLES)
 #create and train SVM model each time coz bug in opencv 3.1.0 svm.load() https://github.com/Itseez/opencv/issues/4969
 # cam=int(raw_input("Enter Camera number: "))
 cam=0
