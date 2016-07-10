@@ -5,6 +5,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
+
+
 @app.route('/')
 def index():
     return 'This is the backend'
@@ -14,7 +16,7 @@ def connect():
     emit('Client connected', {'data': 'Connected'})
 
 
-@socketio.on('disconnect', namespace='/test')
+@socketio.on('disconnect')
 def disconnect():
     print('Client disconnected')
 
