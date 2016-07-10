@@ -17,6 +17,7 @@ def getMaxContour(contours,minArea=200):
 
 #Get Gesture Image by prediction
 def getGestureImg(cnt,img,th1,model,word_map,FORMAT):
+    cv2.imshow('image',img)
     x,y,w,h = cv2.boundingRect(cnt)
     cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
     imgT=img[y:y+h,x:x+w]
