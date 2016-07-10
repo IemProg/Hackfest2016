@@ -1,17 +1,14 @@
 import cv2
 import numpy as np
 import util as ut
-import svm_train as st
+# import svm_train as st
 import re
 # import os
-STABILIZATION_QTY=20
-NUM_SAMPLES=15
-FORMAT='JPG'
-model,word_map=st.trainSVM(NUM_SAMPLES,FORMAT)
+# model,word_map=st.trainSVM(NUM_SAMPLES,FORMAT)
 #create and train SVM model each time coz bug in opencv 3.1.0 svm.load() https://github.com/Itseez/opencv/issues/4969
 # cam=int(raw_input("Enter Camera number: "))
-cam=0
-cap=cv2.VideoCapture(cam)
+# cam=0
+# cap=cv2.VideoCapture(cam)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 
@@ -21,13 +18,11 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 
 text= " "
 
-temp=0
-previouslabel=None
-previousText=" "
-label = None
 
-while(cap.isOpened()):
-	_,img=cap.read()
+
+# while(cap.isOpened()):
+def process(img):
+	# _,img=cap.read()
 	cv2.rectangle(img,(900,100),(1300,500),(255,0,0),3) # bounding box which captures ASL sign to be detected by the system
 	img1=img[100:500,900:1300]
 	img_ycrcb = cv2.cvtColor(img1, cv2.COLOR_BGR2YCR_CB)
@@ -63,12 +58,13 @@ while(cap.isOpened()):
 		cv2.imshow('PredictedGesture',gesture)				  # showing the best match or prediction
 		cv2.putText(img,label,(50,150), font,8,(0,125,155),2)  # displaying the predicted letter on the main screen
 		cv2.putText(img,text,(50,450), font,3,(0,0,255),2)
-	cv2.imshow('Frame',img)
-	cv2.imshow('Mask',mask)
-	k = 0xFF & cv2.waitKey(10)
-	if k == 27:
-		break
+		return label
+	# cv2.imshow('Frame',img)
+	# cv2.imshow('Mask',mask)
+	# k = 0xFF & cv2.waitKey(10)
+	# if k == 27:
+	# 	break
 
 
-cap.release()
+# cap.release()
 cv2.destroyAllWindows()
