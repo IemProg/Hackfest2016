@@ -13,6 +13,7 @@ def index():
 
 @socketio.on('connect')
 def connect():
+    # train model
     emit('Client connected', {'data': 'Connected'})
 
 
@@ -20,10 +21,10 @@ def connect():
 def disconnect():
     print('Client disconnected')
 
-@socketio.on('gotsPhoto')
-def test_message(message):
-    print message
+@socketio.on('photo')
+def dealWithPhoto(photo):
+    print photo
     emit('my response', {'data': 'got it!'})
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, port=33507)
