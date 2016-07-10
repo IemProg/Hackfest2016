@@ -1,6 +1,6 @@
 NumPy >= 1.10
 matplotlib >= 1.5.1
-flask-socketio==1.0
+flask-socketio==0.6
 Flask
 eventlet
 gunicorn==0.16.1
