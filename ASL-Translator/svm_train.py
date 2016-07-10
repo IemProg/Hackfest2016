@@ -2,6 +2,8 @@ import cv2
 import glob, os
 import numpy as np
 from numpy.linalg import norm
+
+NUM_COPIES=50
 svm_params = dict( kernel_type = cv2.SVM_RBF,
                     svm_type = cv2.SVM_C_SVC,
                     C=2.67, gamma=5.383 )
@@ -71,17 +73,17 @@ def hog_single(img):
     samples.append(hist)
     return np.float32(samples)
 
-def trainSVM(num):
+def trainSVM(num,FORMAT):
     imgs=[]
     words=[]
 
     wordPrev = ""
     # os.chdir("TrainDataOurs/")
-    os.chdir("SLFiles/")
+    os.chdir("good/")
     # for file in glob.glob("*.jpg"):
-    for file in glob.glob("*.jpeg"):
+    for file in glob.glob("*." + FORMAT):
         word = file.split('_')[0]
-        if word == 'S': # hardcoded value to exit on
+        if word == '': # hardcoded value to exit on
             break
         elif wordPrev == "" or wordPrev != word:
             print 'Class ' + (word) + ' is being uploaded'
@@ -92,6 +94,8 @@ def trainSVM(num):
     os.chdir("../")
     indices = xrange(1, num+1)
     word_map = zip(indices, words)
+    print word_map
+    print len(imgs)
 
     # for i in range(65,num+65):
     #   for j in range(1,401):
@@ -99,7 +103,7 @@ def trainSVM(num):
     #       imgs.append(cv2.imread('TrainData/'+unichr(i)+'_'+str(j)+'.jpg',0))  # all images saved in a list
 
     # labels = np.repeat(np.arange(1,num+1), 400) # label for each corresponding image saved above
-    labels = np.repeat(indices, 1) # label for each corresponding image saved above
+    labels = np.repeat(indices, NUM_COPIES) # label for each corresponding image saved above
     samples=preprocess_hog(imgs)                # images sent for pre processeing using hog which returns features for the images
     print('SVM is building wait some time ...')
     print len(labels)

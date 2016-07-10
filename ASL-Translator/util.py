@@ -16,7 +16,7 @@ def getMaxContour(contours,minArea=200):
 
 
 #Get Gesture Image by prediction
-def getGestureImg(cnt,img,th1,model,word_map):
+def getGestureImg(cnt,img,th1,model,word_map,FORMAT):
     x,y,w,h = cv2.boundingRect(cnt)
     cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
     imgT=img[y:y+h,x:x+w]
@@ -28,7 +28,8 @@ def getGestureImg(cnt,img,th1,model,word_map):
     print resp
     label = word_map.get(resp)
     print label
-    img=cv2.imread('SLFiles/'+label+'_1.jpeg')
+    # img=cv2.imread('SLFiles/'+label+'_1.jpeg')
+    img=cv2.imread('good/'+label+'_1.' + FORMAT)
     # img=cv2.imread('TrainDataOurs/'+label+'_2.jpg')
     # img=cv2.imread('TrainData/'+unichr(int(resp[0])+64)+'_2.jpg')
     # return img,unichr(int(resp[0])+64)
