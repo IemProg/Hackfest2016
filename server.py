@@ -15,6 +15,7 @@ def index():
 @socketio.on('connect')
 def connect():
     # train model
+    print 'Connected!'
     emit('Client connected', {'data': 'Connected'})
 
 
@@ -29,4 +30,5 @@ def dealWithPhoto(photo):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
+    print port
     socketio.run(app, port=port)

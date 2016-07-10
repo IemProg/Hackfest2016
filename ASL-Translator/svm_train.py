@@ -76,10 +76,10 @@ def trainSVM(num):
     words=[]
 
     wordPrev = ""
-    os.chdir("TrainDataOurs/")
-    # os.chdir("SLFiles/")
-    for file in glob.glob("*.jpg"):
-    # for file in glob.glob("*.jpeg"):
+    # os.chdir("TrainDataOurs/")
+    os.chdir("SLFiles/")
+    # for file in glob.glob("*.jpg"):
+    for file in glob.glob("*.jpeg"):
         word = file.split('_')[0]
         if word == 'S': # hardcoded value to exit on
             break
@@ -99,7 +99,7 @@ def trainSVM(num):
     #       imgs.append(cv2.imread('TrainData/'+unichr(i)+'_'+str(j)+'.jpg',0))  # all images saved in a list
 
     # labels = np.repeat(np.arange(1,num+1), 400) # label for each corresponding image saved above
-    labels = np.repeat(indices, 400) # label for each corresponding image saved above
+    labels = np.repeat(indices, 1) # label for each corresponding image saved above
     samples=preprocess_hog(imgs)                # images sent for pre processeing using hog which returns features for the images
     print('SVM is building wait some time ...')
     print len(labels)

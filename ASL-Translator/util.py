@@ -28,8 +28,8 @@ def getGestureImg(cnt,img,th1,model,word_map):
     print resp
     label = word_map.get(resp)
     print label
-    # img=cv2.imread('SLFiles/'+label+'_1.jpeg')
-    img=cv2.imread('TrainDataOurs/'+label+'_2.jpg')
+    img=cv2.imread('SLFiles/'+label+'_1.jpeg')
+    # img=cv2.imread('TrainDataOurs/'+label+'_2.jpg')
     # img=cv2.imread('TrainData/'+unichr(int(resp[0])+64)+'_2.jpg')
     # return img,unichr(int(resp[0])+64)
     return img,label

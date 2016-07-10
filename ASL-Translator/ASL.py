@@ -6,8 +6,7 @@ import re
 import os
 import speak
 STABILIZATION_QTY=20
-NUM_SAMPLES = 17
-model,word_map=st.trainSVM(NUM_SAMPLES)
+model,word_map=st.trainSVM(2)
 #create and train SVM model each time coz bug in opencv 3.1.0 svm.load() https://github.com/Itseez/opencv/issues/4969
 # cam=int(raw_input("Enter Camera number: "))
 cam=0
@@ -33,12 +32,14 @@ while(cap.isOpened()):
 	cv2.rectangle(img,(900,100),(1300,500),(255,0,0),3) # bounding box which captures ASL sign to be detected by the system
 	img1=img[100:500,900:1300]
 	img_ycrcb = cv2.cvtColor(img1, cv2.COLOR_BGR2YCR_CB)
+	# cv2.imshow('lol', img_ycrcb)
 	blur = cv2.GaussianBlur(img_ycrcb,(11,11),0)
 	skin_ycrcb_min = np.array((0, 138, 67))
 	skin_ycrcb_max = np.array((255, 173, 133))
 	mask = cv2.inRange(blur, skin_ycrcb_min, skin_ycrcb_max)  # detecting the hand in the bounding box using skin detection
 	contours,hierarchy = cv2.findContours(mask.copy(),cv2.RETR_EXTERNAL, 2)
 	cnt=ut.getMaxContour(contours,4000)						  # using contours to capture the skin filtered image of the hand
+	# cv2.imshow("lel", cnt)
 	if cnt!=None:
 		gesture,label=ut.getGestureImg(cnt,img1,mask,model,word_map)   # passing the trained model for prediction and fetching the result
 		if(label!=None):
